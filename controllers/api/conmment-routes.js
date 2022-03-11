@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
   });
 
   router.post('/', (req, res) => {
+    if (req.session) {
     // expects => {comment_text: "This is the comment", user_id: 1, post_id: 2}
     Comment.create({
       comment_text: req.body.comment_text,
@@ -22,6 +23,7 @@ router.get('/', (req, res) => {
         console.log(err);
         res.status(400).json(err);
       });
+    }
   });
 
   router.delete('/:id', (req, res) => {
@@ -42,5 +44,5 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
       });
   });
-  
+
 module.exports = router; 
