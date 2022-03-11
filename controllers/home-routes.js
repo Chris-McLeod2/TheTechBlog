@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
 
   //same as above but for just 1
   router.get('/post/:id', (req, res) => {
-    Post.findAll({
+    Post.findOne({
         where: {
             id: req.params.id
         },
@@ -105,5 +105,9 @@ router.get('/', (req, res) => {
       res.status(404).end();
     }
   });
+
+  router.get('*', (req, res) => {
+    res.redirect('/');
+})
 
 module.exports = router;
